@@ -7543,7 +7543,7 @@ However, integrating solar power into the existing grid poses challenges because
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Data-Sources">Data Sources<a class="anchor-link" href="#Data-Sources">¶</a></h2><p><a href="https://data.gov.tw/dataset/17140">Taipower – Wind and Solar Photovoltaic Power Generation</a>: Retrieved from the Taiwan Government Open Data Platform<br/>
 <a href="https://data.gov.tw/dataset/29938">Taipower – Daily Statistics of Solar Photovoltaic Power Generation and Average Unit Installed Capacity Generation</a>：Retrieved from the Taiwan Government Open Data Platform<br/>
-<a href="https://e-service.cwb.gov.tw/HistoryDataQuery/index.jsp">Weather Station Data</a>: Retrieved from the Central Weather Administration’s Observation Data Query Platform under Taiwan’s Ministry of Transportation and Communications</p>
+<a href="https://opendata.cwa.gov.tw/dataset/observation?page=1">Weather Station Data</a>: Retrieved from the Central Weather Administration’s Observation Data Query Platform under Taiwan’s Ministry of Transportation and Communications</p>
 </div>
 </div>
 </div>
@@ -7803,7 +7803,7 @@ In addition, since some plants did not have operational data during the early pe
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">delete_startingzero</span><span class="p">(</span><span class="n">station_name</span><span class="p">,</span><span class="n">dataset</span><span class="p">):</span>
@@ -7812,7 +7812,8 @@ In addition, since some plants did not have operational data during the early pe
     <span class="n">dataset</span><span class="p">[</span><span class="s1">'月份/Month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">sub_cap</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">capacity</span><span class="p">[</span><span class="s1">'chinese_name'</span><span class="p">]</span><span class="o">==</span><span class="n">station_name</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">sub_cap</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span> <span class="mi">0</span> <span class="p">:</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">sub_cap</span><span class="p">[[</span><span class="s1">'年度/Year'</span><span class="p">,</span><span class="s1">'月份/Month'</span><span class="p">,</span><span class="s1">'裝置容量(瓩)/Installed Capacity(kW)'</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'年度/Year'</span><span class="p">,</span><span class="s1">'月份/Month'</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">sub_cap</span><span class="p">[[</span><span class="s1">'年度/Year'</span><span class="p">,</span><span class="s1">'月份/Month'</span><span class="p">,</span><span class="s1">'裝置容量(瓩)/Installed Capacity(kW)'</span><span class="p">]]</span>
+                           <span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'年度/Year'</span><span class="p">,</span><span class="s1">'月份/Month'</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
 
     <span class="n">dataset</span><span class="p">[</span><span class="s1">'power_efficiency'</span><span class="p">]</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'power'</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'裝置容量(瓩)/Installed Capacity(kW)'</span><span class="p">]</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'power'</span><span class="p">,</span><span class="s1">'裝置容量(瓩)/Installed Capacity(kW)'</span><span class="p">])</span>
@@ -7853,7 +7854,10 @@ In addition, since some plants did not have operational data during the early pe
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">preprocessing</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
-    <span class="n">time_cloumn</span><span class="o">=</span><span class="p">[</span><span class="s2">"time"</span><span class="p">,</span><span class="s2">"StnPresMaxTime"</span><span class="p">,</span><span class="s2">"StnPresMinTime"</span><span class="p">,</span><span class="s2">"T Max Time"</span><span class="p">,</span><span class="s2">"T Min Time"</span><span class="p">,</span><span class="s2">"RHMinTime"</span><span class="p">,</span><span class="s2">"WGustTime"</span><span class="p">,</span><span class="s2">"PrecpMax10Time"</span><span class="p">,</span><span class="s2">"PrecpMax60Time"</span><span class="p">,</span><span class="s2">"UVI Max Time"</span><span class="p">,</span><span class="s2">"年度/Year"</span><span class="p">,</span><span class="s2">"月份/Month"</span><span class="p">]</span>
+    <span class="n">time_cloumn</span><span class="o">=</span><span class="p">[</span><span class="s2">"time"</span><span class="p">,</span><span class="s2">"StnPresMaxTime"</span><span class="p">,</span><span class="s2">"StnPresMinTime"</span>
+                 <span class="p">,</span><span class="s2">"T Max Time"</span><span class="p">,</span><span class="s2">"T Min Time"</span><span class="p">,</span><span class="s2">"RHMinTime"</span><span class="p">,</span><span class="s2">"WGustTime"</span>
+                 <span class="p">,</span><span class="s2">"PrecpMax10Time"</span><span class="p">,</span><span class="s2">"PrecpMax60Time"</span><span class="p">,</span><span class="s2">"UVI Max Time"</span>
+                 <span class="p">,</span><span class="s2">"年度/Year"</span><span class="p">,</span><span class="s2">"月份/Month"</span><span class="p">]</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">time_cloumn</span><span class="p">)</span>
 
     <span class="n">dataset</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Converted_Time'</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)))</span>
@@ -8340,7 +8344,7 @@ Five evaluation metrics are used: Score (coefficient of determination), MSE, RMS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">casualtrain_outcome</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">plantname_list</span><span class="p">)</span>
@@ -8393,7 +8397,10 @@ Five evaluation metrics are used: Score (coefficient of determination), MSE, RMS
 <span class="n">casualtrain_outcome</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">casualtrain_outcome</span><span class="p">,</span><span class="n">df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="n">casualtrain_outcome</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Plant Name"</span><span class="p">,</span><span class="s2">"lr_score"</span><span class="p">,</span><span class="s2">"lr_mse"</span><span class="p">,</span><span class="s2">"lr_rmse"</span><span class="p">,</span><span class="s2">"lr_mae"</span><span class="p">,</span><span class="s2">"lr_smape"</span><span class="p">,</span><span class="s2">"rf_score"</span><span class="p">,</span><span class="s2">"rf_mse"</span><span class="p">,</span><span class="s2">"rf_rmse"</span><span class="p">,</span><span class="s2">"rf_mae"</span><span class="p">,</span><span class="s2">"rf_smape"</span><span class="p">,</span><span class="s2">"knn_score"</span><span class="p">,</span><span class="s2">"knn_mse"</span><span class="p">,</span><span class="s2">"knn_rmse"</span><span class="p">,</span><span class="s2">"knn_mae"</span><span class="p">,</span><span class="s2">"knn_smape"</span><span class="p">,</span><span class="s2">"GBDT_score"</span><span class="p">,</span><span class="s2">"GBDT_mse"</span><span class="p">,</span><span class="s2">"GBDT_rmse"</span><span class="p">,</span><span class="s2">"GBDT_mae"</span><span class="p">,</span><span class="s2">"GBDT_smape"</span><span class="p">]</span>
+<span class="n">casualtrain_outcome</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Plant Name"</span><span class="p">,</span><span class="s2">"lr_score"</span><span class="p">,</span><span class="s2">"lr_mse"</span><span class="p">,</span><span class="s2">"lr_rmse"</span><span class="p">,</span><span class="s2">"lr_mae"</span><span class="p">,</span><span class="s2">"lr_smape"</span>
+                             <span class="p">,</span><span class="s2">"rf_score"</span><span class="p">,</span><span class="s2">"rf_mse"</span><span class="p">,</span><span class="s2">"rf_rmse"</span><span class="p">,</span><span class="s2">"rf_mae"</span><span class="p">,</span><span class="s2">"rf_smape"</span>
+                             <span class="p">,</span><span class="s2">"knn_score"</span><span class="p">,</span><span class="s2">"knn_mse"</span><span class="p">,</span><span class="s2">"knn_rmse"</span><span class="p">,</span><span class="s2">"knn_mae"</span><span class="p">,</span><span class="s2">"knn_smape"</span>
+                             <span class="p">,</span><span class="s2">"GBDT_score"</span><span class="p">,</span><span class="s2">"GBDT_mse"</span><span class="p">,</span><span class="s2">"GBDT_rmse"</span><span class="p">,</span><span class="s2">"GBDT_mae"</span><span class="p">,</span><span class="s2">"GBDT_smape"</span><span class="p">]</span>
 <span class="n">casualtrain_outcome</span>
 </pre></div>
 </div>
@@ -8405,7 +8412,7 @@ Five evaluation metrics are used: Score (coefficient of determination), MSE, RMS
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">

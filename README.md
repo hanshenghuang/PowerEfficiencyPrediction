@@ -3,7 +3,10 @@
 ## Background
 With the rise of sustainability, countries are actively developing renewable energy. In Taiwan, the government aims for renewable energy to account for 20% of total power generation by 2025, with solar power as a key focus. In 2020, solar power already contributed 40% of renewable-energy generation.
 
-However, solar output is highly weather-dependent, which can destabilize the grid. Accurately forecasting solar generation is therefore essential. This report aims to predict solar-power generation efficiency and identify key influencing factors, helping the power industry manage energy dispatch and maintain grid stability.
+![generation_efficiency](https://github.com/hanshenghuang/PowerEfficiencyPrediction/blob/main/generation_efficiency.png)
+
+However, predicting solar power generation is very challenging. For example, as shown in the figure above, generation efficiency does not have a fixed geographic pattern; the southern regions of Taiwan, which have higher temperatures and more sunny days, do not necessarily achieve higher efficiency. This illustrates that integrating solar power into the electrical grid is difficult, as its fluctuating output can affect grid stability. Therefore, accurate prediction of solar power generation is crucial for effective utilization of solar energy.  
+This report aims to predict solar-power generation efficiency and identify key influencing factors, helping the power industry manage energy dispatch and maintain grid stability.
 
 ## Predicting Taiwan’s Daily Solar Power Generation Using Weather and Geographic Factors  
 Analysis Details: Please view the [website](https://hanshenghuang.github.io/PowerEfficiencyPrediction/PowerEfficiency_Prediction_English.html)
